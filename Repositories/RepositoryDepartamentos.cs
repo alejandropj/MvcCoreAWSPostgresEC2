@@ -25,5 +25,18 @@ namespace MvcCoreAWSPostgresEC2.Repositories
             return await this.context.Departamentos
                 .FirstOrDefaultAsync(x => x.IdDepartamento == id);
         }
+
+        public async Task InsertDepartamentoAsync
+            (int id, string nombre, string localidad)
+        {
+            Departamento dept = new Departamento
+            {
+                IdDepartamento = id,
+                Nombre = nombre,
+                Localidad = localidad
+            };
+            this.context.Add(dept);
+            await this.context.SaveChangesAsync();
+        }
     }
 }
